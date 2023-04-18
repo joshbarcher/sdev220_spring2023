@@ -22,20 +22,42 @@ public class LinkedList implements IList
         else
         {
             //while there is a next node in the list
-            while(head.next != null)
+            Node current = head;
+            while(current.next != null)
             {
-                //move to it
-                head = head.next;
+                //move to the next element
+                current = current.next;
             }
 
             //now at the end of the list
-            head.next = new Node(element, null);
+            current.next = new Node(element, null);
         }
     }
 
     @Override
     public boolean contains(String element)
     {
+        //if the list is empty, it can't contain the search element
+        if (head == null)
+        {
+            return false;
+        }
+        else
+        {
+            Node current = head;
+            while (current != null)
+            {
+                //check if the current node has our search element?
+                if (current.data.equals(element))
+                {
+                    //we found it!
+                    return true;
+                }
+
+                //otherwise, move to the next node
+                current = current.next;
+            }
+        }
         return false;
     }
 
