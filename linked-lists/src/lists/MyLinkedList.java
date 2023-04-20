@@ -2,13 +2,23 @@ package lists;
 
 import adts.IList;
 
-public class LinkedList implements IList
+public class MyLinkedList implements IList
 {
     private Node head;
+    private Node tail;
 
-    //this tracks the number of elements in the
-    //list
+    //this tracks the number of elements in the list
     private int size = 0;
+
+    //String... is variable length parameters
+    public MyLinkedList(String... elements)
+    {
+        for (int i = 0; i < elements.length; i++)
+        {
+            String element = elements[i];
+            add(element);
+        }
+    }
 
     @Override
     public void add(String element)
@@ -16,22 +26,16 @@ public class LinkedList implements IList
         //our list is currently empty!
         if (head == null)
         {
-            head = new Node(element, null);
-            size++;
+            //assign head and tail to the new Node
+            head = tail = new Node(element, null);
         }
         else
         {
-            //while there is a next node in the list
-            Node current = head;
-            while(current.next != null)
-            {
-                //move to the next element
-                current = current.next;
-            }
-
-            //now at the end of the list
-            current.next = new Node(element, null);
+            //move to the last node in the linked list (all done!)
+            tail.next = new Node(element, null);
+            tail = tail.next;
         }
+        size++;
     }
 
     @Override
@@ -62,21 +66,46 @@ public class LinkedList implements IList
     }
 
     @Override
-    public boolean remove(String element)
+    public void replace()
     {
-        return false;
+        Node current = head;
+        while (current != null)
+        {
+            //current is visiting one of the nodes in the list
+            current.data = "hello";
+
+            current = current.next;
+        }
     }
 
     @Override
     public int size()
     {
-        return 0;
+        return size;
+    }
+
+    @Override
+    public void printList()
+    {
+        Node current = head;
+        while (current != null)
+        {
+            System.out.print(current);
+            current = current.next;
+        }
+        System.out.println(); //new line!
     }
 
     @Override
     public void clear()
     {
 
+    }
+
+    @Override
+    public boolean remove(String element)
+    {
+        return false;
     }
 
     @Override
@@ -106,6 +135,11 @@ public class LinkedList implements IList
         {
             this.data = data;
             this.next = next;
+        }
+
+        public String toString()
+        {
+            return data + " -> ";
         }
     }
 }
