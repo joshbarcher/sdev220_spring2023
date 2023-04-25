@@ -2,12 +2,14 @@ package driver;
 
 import lists.MyLinkedList;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Main
 {
     public static void main(String[] args)
     {
+        //                                    0    1    2    3    4    5
         MyLinkedList list = new MyLinkedList("a", "b", "c", "d", "e", "f");
 
         //test contains on an empty list
@@ -24,12 +26,27 @@ public class Main
 
         System.out.println("size(): " + list.size()); //???
         list.printList();
+        System.out.println(list.get(3)); //d
+        System.out.println(list.get(1)); //b
+        //System.out.println(list.get(-10)); //b
 
-        MyLinkedList javaList = new MyLinkedList();
+        System.out.println("clear()");
+        list.clear();
+        list.printList();
+
+        LinkedList javaList = new LinkedList();
         System.out.println("Adding 1,000,000 elements");
         for (int i = 1; i <= 1000000; i++)
         {
-            javaList.add("e");
+            javaList.add(0, "e");
+        }
+        System.out.println("Done!");
+
+        System.out.println("Accessing all elements");
+        for (int i = 0; i < javaList.size(); i++)
+        {
+            Object value = javaList.get(i);
+            //do something with "e"
         }
         System.out.println("Done!");
     }

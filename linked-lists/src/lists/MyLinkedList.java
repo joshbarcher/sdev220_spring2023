@@ -39,6 +39,23 @@ public class MyLinkedList implements IList
     }
 
     @Override
+    public void printList()
+    {
+        if (head == null)
+        {
+            System.out.println("Empty list!");
+        }
+
+        Node current = head;
+        while (current != null)
+        {
+            System.out.print(current.toString());
+            current = current.next;
+        }
+        System.out.println(); //new line!
+    }
+
+    @Override
     public boolean contains(String element)
     {
         //if the list is empty, it can't contain the search element
@@ -85,33 +102,32 @@ public class MyLinkedList implements IList
     }
 
     @Override
-    public void printList()
+    public void clear()
     {
-        Node current = head;
-        while (current != null)
-        {
-            System.out.print(current);
-            current = current.next;
-        }
-        System.out.println(); //new line!
+        head = tail = null;
+        size = 0;
     }
 
     @Override
-    public void clear()
+    public String get(int index)
     {
+        if (index < 0 || index >= size)
+        {
+            throw new IndexOutOfBoundsException("Bad index!");
+        }
 
+        Node current = head;
+        for (int i = 0; i < index; i++)
+        {
+            current = current.next;
+        }
+        return current.data;
     }
 
     @Override
     public boolean remove(String element)
     {
         return false;
-    }
-
-    @Override
-    public String get(int index)
-    {
-        return null;
     }
 
     @Override
