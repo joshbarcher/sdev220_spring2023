@@ -20,15 +20,6 @@ public class Main
         list.printList();
         System.out.println("remove(D): " + list.remove("D"));
         list.printList();
-
-        LinkedList<String> strings = new LinkedList<>();
-
-        strings.add("a");
-        strings.add("b");
-        strings.add("c");
-
-        System.out.println(strings.contains("b"));
-        strings.clear();
     }
 
     private static void practice()
