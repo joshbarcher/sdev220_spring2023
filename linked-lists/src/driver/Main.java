@@ -9,6 +9,30 @@ public class Main
 {
     public static void main(String[] args)
     {
+        MyLinkedList list = new MyLinkedList("A", "B", "C", "D", "E", "F");
+
+        list.printList();
+        System.out.println("remove(A): " + list.remove("A"));
+        list.printList();
+        System.out.println("remove(F): " + list.remove("F"));
+        list.printList();
+        System.out.println("remove(G): " + list.remove("G"));
+        list.printList();
+        System.out.println("remove(D): " + list.remove("D"));
+        list.printList();
+
+        LinkedList<String> strings = new LinkedList<>();
+
+        strings.add("a");
+        strings.add("b");
+        strings.add("c");
+
+        System.out.println(strings.contains("b"));
+        strings.clear();
+    }
+
+    private static void practice()
+    {
         //                                    0    1    2    3    4    5
         MyLinkedList list = new MyLinkedList("a", "b", "c", "d", "e", "f");
 
@@ -51,3 +75,4 @@ public class Main
         System.out.println("Done!");
     }
 }
+

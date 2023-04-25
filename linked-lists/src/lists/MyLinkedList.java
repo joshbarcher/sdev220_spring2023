@@ -127,7 +127,41 @@ public class MyLinkedList implements IList
     @Override
     public boolean remove(String element)
     {
-        return false;
+        //what if the list is empty?
+        if (head == null)
+        {
+            return false;
+        }
+        else if (head.data.equals(element)) //removing the first element?
+        {
+            head = head.next;
+            return true;
+        }
+        else
+        {
+            //we need to scan for the element
+            Node current = head;
+
+            //while there is a next node and it isn't our search value
+            while (current.next != null && !current.next.data.equals(element))
+            {
+                //move to the next node
+                current = current.next;
+            }
+
+            //we should remove current.next from the linked list
+            if (current.next == null)
+            {
+                //not found!
+                return false;
+            }
+            else
+            {
+                //remove current.next from the linked list
+                current.next = current.next.next;
+                return true;
+            }
+        }
     }
 
     @Override
