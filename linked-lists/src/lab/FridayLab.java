@@ -12,7 +12,47 @@ public class FridayLab
 {
     public static void main(String[] args)
     {
+        Node list = createList(0, 20);
+        printList(list);
 
+        Node[] parts = split(list);
+        System.out.println("Odd Positions: ");
+        printList(parts[0]);
+        System.out.println("Even Positions: ");
+        printList(parts[1]);
+    }
+
+    public static Node[] split(Node head)
+    {
+        //assume we have at least 2 elements
+
+        //head of two linked lists
+        Node evenHead = new Node(head.data);
+        Node oddHead = new Node(head.next.data);
+        Node evenTail = evenHead;
+        Node oddTail = oddHead;
+
+        Node current = head.next.next;
+        while (current != null)
+        {
+            //add the next element to the end of the even list
+            evenTail.next = new Node(current.data);
+            evenTail = evenTail.next;
+
+            //move to the next node in the input list
+            current = current.next;
+
+            if (current != null)
+            {
+                oddTail.next = new Node(current.data);
+                oddTail = oddTail.next;
+
+                //move to the next node in the input list
+                current = current.next;
+            }
+        }
+
+        return new Node[] {evenHead, oddHead};
     }
 
     public static Node createList(int min, int max)
@@ -36,11 +76,6 @@ public class FridayLab
             current = current.next;
         }
         System.out.println();
-    }
-
-    public static Node[] split(Node head)
-    {
-        return null;
     }
 
     public static Node[] split(Node head, int length)
