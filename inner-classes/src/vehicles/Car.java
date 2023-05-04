@@ -21,11 +21,22 @@ public class Car
     public void replaceEngine()
     {
         engine = new Engine("Acme V6", 60);
+
+        Engine[] engines = {
+            new Engine("Acme V6", 60),
+            new Engine("Acme V6", 60),
+            new Engine("Acme V6", 60)
+        };
         System.out.println("Engine replaced - " + engine.type);
     }
 
+    public Engine getEngine()
+    {
+        return engine;
+    }
+
     //the inner class
-    public static class Engine
+    private static class Engine
     {
         private String type;
         private int horsePower;
@@ -38,8 +49,8 @@ public class Car
 
         public String toString()
         {
-            return "A " + type + " engine that belongs to a " +
-                    make + ", " + model;
+            return "A " + type + " engine";
+                    //make + ", " + model;
         }
     }
 }
