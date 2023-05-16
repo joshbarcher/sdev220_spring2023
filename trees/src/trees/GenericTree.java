@@ -1,16 +1,11 @@
 package trees;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
-public class BinarySearchTree
+public class GenericTree<T extends Comparable<T>>
 {
     private Node root;
     private int size;
 
-    public boolean add(int element)
+    public boolean add(T element)
     {
         //what if the tree is empty?
         if (root == null)
@@ -27,14 +22,16 @@ public class BinarySearchTree
     }
 
     //private, recursive add()
-    private boolean add(Node current, int element)
+    private boolean add(Node current, T element)
     {
+        int comparison = element.compareTo(current.data);
+
         //base case
-        if (element == current.data)
+        if (comparison == 0)
         {
             return false; //no dups!
         }
-        else if (element < current.data)
+        else if (comparison < 0)
         {
             if (current.left != null) //looking left!
             {
@@ -62,27 +59,29 @@ public class BinarySearchTree
         }
     }
 
-    public boolean contains(int element)
+    public boolean contains(T element)
     {
         //start searching at root...
         return contains(root, element);
     }
 
-    private boolean contains(Node current, int element)
+    private boolean contains(Node current, T element)
     {
         if (current == null) //didn't find it!
         {
             return false;
         }
-        else if (current.data == element) //found it!
+
+        int comparison = element.compareTo(current.data);
+        if (comparison == 0) //found it!
         {
             return true;
         }
-        else if (current.data < element) //right
+        else if (comparison < 0) //right
         {
             return contains(current.right, element);
         }
-        else //if (current.data > element) //left
+        else //left
         {
             return contains(current.left, element);
         }
@@ -93,103 +92,18 @@ public class BinarySearchTree
         return size;
     }
 
-    public List<Integer> bfs()
-    {
-        List<Integer> traversal = new ArrayList<>();
-
-        //#1
-        Queue<Node> queue = new LinkedList<>();
-        //#2
-        queue.add(root);
-
-        //#3
-        while (!queue.isEmpty())
-        {
-            //#4
-            Node next = queue.remove();
-            traversal.add(next.data);
-
-            //#5
-            if (next.left != null)
-            {
-                queue.add(next.left);
-            }
-            if (next.right != null)
-            {
-                queue.add(next.right);
-            }
-        }
-
-        return traversal;
-    }
-
-    public List<Integer> inOrder()
-    {
-        List<Integer> traversal = new ArrayList<>();
-
-        //start the search at the root, pass in my list to hold elements
-        inOrder(root, traversal);
-
-        return traversal;
-    }
-
-    //this type of method is a good design for our tree-exercises hw!!!!
-    private void inOrder(Node current, List<Integer> traversal)
-    {
-        if (current != null)
-        {
-            //left, node, right
-            inOrder(current.left, traversal);
-            traversal.add(current.data);
-            inOrder(current.right, traversal);
-        }
-    }
-
-    //implement postOrder()?
-    public List<Integer> postOrder()
-    {
-        List<Integer> traversal = new ArrayList<>();
-
-        //start the search at the root, pass in my list to hold elements
-        postOrder(root, traversal);
-
-        return traversal;
-    }
-
-    //this type of method is a good design for our tree-exercises hw!!!!
-    private void postOrder(Node current, List<Integer> traversal)
-    {
-        if (current != null)
-        {
-            //left, right, node
-            postOrder(current.left, traversal);
-            postOrder(current.right, traversal);
-            traversal.add(current.data);
-        }
-    }
-
-    //this is a toString() for the tree
-    public String toString()
-    {
-        if (root == null)
-        {
-            return "<empty tree>";
-        }
-        return root.toString();
-    }
-
     private class Node
     {
-        private int data;
+        private T data;
         private Node left;
         private Node right;
 
-        public Node(int data)
+        public Node(T data)
         {
             this.data = data;
         }
 
-        public Node(int data, Node left, Node right)
+        public Node(T data, Node left, Node right)
         {
             this.data = data;
             this.left = left;
