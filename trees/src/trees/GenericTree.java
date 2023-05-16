@@ -1,5 +1,7 @@
 package trees;
 
+//extends is used to declare a bound on the generic type T, it says the type
+//uses an interface or has a parent class
 public class GenericTree<T extends Comparable<T>>
 {
     private Node root;
@@ -90,6 +92,15 @@ public class GenericTree<T extends Comparable<T>>
     public int getSize()
     {
         return size;
+    }
+
+    public String toString()
+    {
+        if (root == null)
+        {
+            return "null";
+        }
+        return root.toString();
     }
 
     private class Node

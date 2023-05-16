@@ -38,7 +38,7 @@ public class Main
         System.out.println(tree.postOrder());
 
         //do the same thing with Java's Tree classes
-        /*TreeSet<Integer> otherTree = new TreeSet<>();
+        TreeSet<Integer> otherTree = new TreeSet<>();
 
         otherTree.add(16);
         otherTree.add(9);
@@ -56,7 +56,7 @@ public class Main
         for (int number : otherTree)
         {
             System.out.println(number);
-        }*/
+        }
 
         TreeSet<String> stringsTree;
         TreeSet<Car> carsInTree;
