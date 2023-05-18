@@ -19,17 +19,16 @@ public class Car implements Comparable<Car>
     @Override
     public int compareTo(Car other)
     {
-        if (miles < other.miles) //a < b
+        int compareColor = color.compareTo(other.color);
+        if (compareColor == 0)
         {
-            return -1;
+            //the same color (sort by make model)
+            return makeModel.compareTo(other.makeModel);
         }
-        else if (miles > other.miles) //a > b
+        else
         {
-            return 1;
-        }
-        else //a == b
-        {
-            return 0;
+            //different color
+            return compareColor;
         }
     }
 

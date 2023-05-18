@@ -2,14 +2,14 @@ package objects;
 
 public class ObjectHolder
 {
-    private Object data;
+    private Car data;
 
-    public ObjectHolder(Object data)
+    public ObjectHolder(Car data)
     {
         this.data = data;
     }
 
-    public Object getData()
+    public Car getData()
     {
         return data;
     }

@@ -17,6 +17,28 @@ public class GameConsole
     }
 
     @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GameConsole that = (GameConsole) o;
+
+        if (storageGigs != that.storageGigs) return false;
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + storageGigs;
+        return result;
+    }
+
+    /*@Override
     public boolean equals(Object obj)
     {
         //detect if the obj variable has an instance of GameConsole inside?
@@ -27,8 +49,8 @@ public class GameConsole
 
         //convert Object variable to GameConsole variable
         GameConsole other = (GameConsole)obj;
-        return type.equals(other.type);
-    }
+        return type.equals(other.type) && discLess == other.discLess;
+    }*/
 
     public String getType() {
         return type;
