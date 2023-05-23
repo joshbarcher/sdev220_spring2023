@@ -27,6 +27,16 @@ public class HashTable
         code = Math.abs(code);
         int index = code % table.length;
 
+        //detect if the newly added element will collide with another?
+        while (table[index] != null)
+        {
+            System.out.println("Collision!");
+
+            //guaranteed to find a null position in the table
+            //even circling around the top index back to zero
+            index = (index + 1) % table.length;
+        }
+
         table[index] = newElement;
         return true;
     }
@@ -34,6 +44,20 @@ public class HashTable
     //reports (true or false) whether the input element is in the table
     public boolean contains(Object element)
     {
+        int code = element.hashCode();
+        code = Math.abs(code);
+        int index = code % table.length;
+
+        while (table[index] != null) //while there is a value at the index
+        {
+            if (table[index].equals(element))
+            {
+                return true; //found it!
+            }
+            System.out.println("Collision!");
+            index = (index + 1) % table.length; //move to next index
+        }
+
         return false;
     }
 
@@ -42,3 +66,13 @@ public class HashTable
         return Arrays.toString(table);
     }
 }
+
+
+
+
+
+
+
+
+
+
