@@ -15,6 +15,11 @@ public class Rational
 
     public Rational(double numerator, double denominator)
     {
+        if (denominator == 0)
+        {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+
         this.numerator = numerator;
         this.denominator = denominator;
     }
@@ -22,7 +27,7 @@ public class Rational
     //returns true if this rational evaluates to one (5/5, 3/3, -1/-1, 1/1, ...)
     public boolean isOne()
     {
-
+        return numerator == denominator;
     }
 
     public double getNumerator()
